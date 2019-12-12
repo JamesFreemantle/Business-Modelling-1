@@ -18,7 +18,8 @@ public class PrinterDriver {
             System.out.print("\n1.  Create User");
             System.out.print("\n2.  Display all Users");
             System.out.print("\n3.  Login");
-            System.out.print("\n4  Quit");
+            System.out.print("\n4.  Send document to printer");
+            System.out.print("\n5.  Quit");
          
             option = scan.nextInt();
             scan.nextLine();
@@ -35,25 +36,29 @@ public class PrinterDriver {
             	System.out.println("Please enter your accountID to login");
             	String ID = scan.nextLine();
             	login(ID);
-            }           
-        } while (option != 4);
+            }
+            else if (option == 4)
+            {
+                sendDoctoprinter();
+            }
+            
+        } while (option != 5);
     }
-	
 	public PrintAccount login(String ID)
 	{
 		if(!printAccounts.isEmpty())
 		{
 			for (PrintAccount anAccount: printAccounts)
 			{
-				if(anAccount.getID().equalsIgnoreCase(ID))
+				if(anAccount.getName().equalsIgnoreCase(name))
 				{
-					anAccount.printAccountMenu();
+					return anAccount;
 				}
 			}
 		}
 		else 
 		{
-			System.out.println("No account with that ID");
+			System.out.println("There are no accounts yet");
 		}
 		return null;	
 	}
@@ -64,6 +69,8 @@ public class PrinterDriver {
 	public  void createNewUserAccount()
 	{
 	    Scanner scan = new Scanner(System.in);
+		for (int i=0; i<3; i++)
+		{
 			int balance = 0;
 			System.out.println("User ID: ");
 			String ID = scan.nextLine();
@@ -72,9 +79,8 @@ public class PrinterDriver {
 			System.out.println("User email:");
 			String email = scan.nextLine();
 			User UserAcc = new User(ID, name, email);
-			userAccounts.add(UserAcc);
-			PrintAccount PrintAcc = new PrintAccount(ID, 0);
-			printAccounts.add(PrintAcc);
+			userAccounts.add(UserAcc);		
+		 }
 	}
 	public void displayUsers()
 	{
@@ -90,13 +96,13 @@ public class PrinterDriver {
 		 }
 	}
 		
-		private PrintAccount searchAccount(String ID)
+		private PrintAccount searchAccount(String name)
 		{
 			if(!printAccounts.isEmpty())
 			{
 				for (PrintAccount anAccount: printAccounts)
 				{
-					if(anAccount.getID().equalsIgnoreCase(ID))
+					if(anAccount.getName().equalsIgnoreCase(name))
 					{
 						return anAccount;
 					}
