@@ -1,13 +1,15 @@
+import java.util.ArrayList;
 
 public class PrintAccount {
 
 	 private double balance;
-	 private String name;
-	 private PrintAccount printAccount;
+	 private String ID;
+	 private ArrayList<Document> documents;
+	 private ArrayList<PrintJob> jobList;
 	 
-	public PrintAccount(String name, double balance) 
+	public PrintAccount(String ID, double balance) 
 	{
-		this.name=name;
+		this.ID=ID;
 		this.balance=balance;
 	}
 	
@@ -15,13 +17,30 @@ public class PrintAccount {
 	{
 		return balance;
 	}
-
-	public String getName(){
-		return name;
-	}
-	public void deposit (double money)
+	
+	public String getID()
 	{
-		balance = balance + money;
+		return ID;
+	}
+	
+	public void topUp (double amount)
+	{
+		balance = balance + amount;
+	}
+	
+	public double calculateBalance(double amount)
+	{
+		amount = balance+amount;
+		return amount;		
+	}
+	public void changeBalance(float amount)
+	{
+		balance = balance - amount;
+	}
+	
+	public PrintJob createJob(Document, boolean color, boolean bothSides) 
+	{
+		this.
 	}
 	
 	public PrintAccount getAccount()
