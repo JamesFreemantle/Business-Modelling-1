@@ -2,18 +2,23 @@ import java.util.ArrayList;
 
 public class Printer 
 {
-	private String printerID;
+	private int printerID;
 	private float tonerLevel;
 	private int paperLeft;
-	private  ArrayList<PrintJob> printQueue;
+	public ArrayList<PrintJob> printQueue = new ArrayList<PrintJob>();
 	
-	public Printer(String printerID, float tonerLevel, int paperLeft, ArrayList<PrintJob> printQueue) 
+	public Printer(int printerID, int tonerLevel, int paperLeft) 
 	{
 		this.printerID=printerID;
-		this.tonerLevel=tonerLevel;
-		this.paperLeft=paperLeft;
+		this.tonerLevel=100;
+		this.paperLeft=50;
 		this.printQueue = printQueue;
 	}
+	public ArrayList<PrintJob> getQueue()
+	{
+		return printQueue;
+	}
+
 	public boolean canPrint(PrintJob printJob)
 	{
 		if (paperLeft>printJob.getFile().getpages())

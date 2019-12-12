@@ -5,8 +5,10 @@ public class PrintAccount {
 
 	 private double balance;
 	 private String ID;
-	 private ArrayList<Document> uploads;
-	 private ArrayList<PrintJob> jobList;
+	 private ArrayList<Document> uploads= new ArrayList<Document>();
+	 private ArrayList<PrintJob> jobList = new ArrayList<PrintJob>();
+	 
+	 Printer printerOne = new Printer(1,50,100);
 	 
 	 Scanner scan = new Scanner(System.in);
 	public PrintAccount(String ID, double balance) 
@@ -39,7 +41,9 @@ public class PrintAccount {
             }
             else if (option2 == 3)
             {
-            	canAfford((createJob()));
+            	PrintJob pjob = createJob();
+            	canAfford(pjob);
+            	sendToPrinter(pjob, printerOne);
             }
         }
             while (option2 != 4);
@@ -69,20 +73,19 @@ public class PrintAccount {
 	public void canAfford(PrintJob pjob)
 	{
 		double expense = pjob.calculatePrice(pjob.getFile());
-		if (expense<getBalance())
+		if (expense>getBalance())
 		{
 			System.out.println("Sorry, you need to TopUp, current balance : "+getBalance()+" Cost: "+expense);
 		}
 		else
 		{
 			changeBalance(expense);
-			sendToPrinter(pjob);
 		}
 	}
 	
-	public void sendToPrinter(PrintJob pjob)
+	public void sendToPrinter(PrintJob pjob, Printer printerOne)
 	{
-		Printer myprinter = new 
+		
 	}
 	public double getBalance()
 	{
