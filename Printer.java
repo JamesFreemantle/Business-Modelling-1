@@ -3,11 +3,11 @@ import java.util.ArrayList;
 public class Printer 
 {
 	private String printerID;
-	private float tonerLevel=50;
-	private int paperLeft =50;
+	private float tonerLevel;
+	private int paperLeft;
 	private  ArrayList<PrintJob> printQueue;
 	
-	public Printer(String printerID, String filename, int sizeMB, ArrayList<PrintJob> printQueue, float tonerLevel, int paperLeft) 
+	public Printer(String printerID, float tonerLevel, int paperLeft, ArrayList<PrintJob> printQueue) 
 	{
 		this.printerID=printerID;
 		this.tonerLevel=tonerLevel;
@@ -25,6 +25,7 @@ public class Printer
 			return false;
 		}
 	}
+	
 	public void queueJob(PrintJob printJob)
 	{
 		printQueue.add(printJob);

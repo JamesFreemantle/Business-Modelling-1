@@ -28,55 +28,61 @@ public class PrintAccount {
             scan.nextLine();
             if (option2 == 1)
             {
-            	getAccount();
+            	getAccountDetails();
             }
             else if (option2 == 2)
             {
             	System.out.println("How much would you like to TopUp your account by?");
-            	topUp(balance);
+            	double topupfigure = scan.nextDouble();
+            	topUp(topupfigure);
             	System.out.println("New Balance: "+ getBalance());
             }
             else if (option2 == 3)
             {
-            	uploadDocument();
+            	canAfford((createJob()));
             }
         }
             while (option2 != 4);
 	}
-	public void uploadDocument()
+	
+	public PrintJob createJob()
 	{
 		System.out.println("Document ID: ");
-		String docID = scan.nextLine();
+		int docID = scan.nextInt();
+		scan.nextLine();
 		System.out.println("Filename: ");
     	String filename = scan.nextLine();
+    	System.out.println("MB: ");
+    	int mb = scan.nextInt();
+    	scan.hasNextLine();
     	System.out.println("Enter number of pages: ");
     	int numpages = scan.nextInt();
-    	scan.nextLine();   	
-    	System.out.println("Print both sides? Y/N");
-    	String bsides = scan.nextLine();
-    	Document doc = new Document(docID, filename, sizeMB, numpages);
-		uploads.add(doc);System.out.println("Print in colour? Y/N ");
-    	String a = scan.nextLine();
-    	if((a=="y")||(a=="Y"))
-    	{
-    		boolean colour=true;
-    	}
-    	else
-    	{
-    		boolean colour =false;
-    	}
-		createJob(doc,colour,bsides);
-    	
-    	
+    	scan.nextLine(); 
+    	Document doc = new Document(docID, filename, mb,numpages);
+    	boolean colour =false;
+		boolean bothsides = false;
+		PrintJob pjob = new PrintJob(doc, colour, bothsides);
+		pjob = pjob.uploadDocument(doc, colour, bothsides);
+		jobList.add(pjob);
+		return pjob;
 	}
-	public PrintJob createJob(Document document, boolean colour, boolean bothSides)
+	public void canAfford(PrintJob pjob)
 	{
-		PrintJob a = new PrintJob(document, colour, bothSides);
-		return a;
+		double expense = pjob.calculatePrice(pjob.getFile());
+		if (expense<getBalance())
+		{
+			System.out.println("Sorry, you need to TopUp, current balance : "+getBalance()+" Cost: "+expense);
+		}
+		else
+		{
+			changeBalance(expense);
+			sendToPrinter(pjob);
+		}
 	}
-	public void sendToPrinter(PrintJob a)
+	
+	public void sendToPrinter(PrintJob pjob)
 	{
-		a.
+		Printer myprinter = new 
 	}
 	public double getBalance()
 	{
@@ -93,24 +99,16 @@ public class PrintAccount {
 		balance = balance + amount;
 	}
 	
-	public double calculateBalance(double amount)
+	
+	public void changeBalance(double expense)
 	{
-		amount = balance+amount;
-		return amount;		
-	}
-	public void changeBalance(float amount)
-	{
-		balance = balance - amount;
+		balance = balance - expense;
 	}
 	
-	public String getAccount()
+	public void getAccountDetails()
 	{
-		return toString();	
+		System.out.println( "ID: " + ID + ", Balance:" + balance+", Documents"+uploads
+		+", joblist: "+jobList);
 	}
 
-	public String toString(){
-		
-		return "ID: " + this.ID + ", Balance:" + this.balance+", Documents"+this.documents
-				+", joblist: "+this.jobList;
-	}
 }

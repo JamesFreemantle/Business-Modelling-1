@@ -6,9 +6,9 @@ public class Document
 	private int sizeMB;
 	private int pages;
 	
-	public Document(int ID, String filename, int sizeMB, int pages) 
+	public Document(int docID, String filename, int sizeMB, int pages) 
 	{
-		this.docID=c;
+		this.docID=docID;
 		this.filename=filename;
 		this.sizeMB=sizeMB;
 		this.pages=pages;
