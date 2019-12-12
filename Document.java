@@ -1,14 +1,14 @@
 
 public class Document 
 {
-	private String docID;
+	private int docID;
 	private String filename;
 	private int sizeMB;
 	private int pages;
 	
-	public Document(String docID, String filename, int sizeMB, int pages) 
+	public Document(int ID, String filename, int sizeMB, int pages) 
 	{
-		this.docID=docID;
+		this.docID=c;
 		this.filename=filename;
 		this.sizeMB=sizeMB;
 		this.pages=pages;
@@ -16,7 +16,14 @@ public class Document
 	public int getpages()
 	{
 		return pages;
-		
+	}
+	public int getDocID()
+	{
+		return docID = docID+1;
+	}
+	public float getSizeMB()
+	{
+		return pages/5;
 	}
 	public String toString()
 	{	
