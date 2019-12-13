@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 public class Printer 
@@ -12,7 +13,6 @@ public class Printer
 		this.printerID=printerID;
 		this.tonerLevel=100;
 		this.paperLeft=500;
-		this.printQueue = printQueue;
 	}
 	public ArrayList<PrintJob> getQueue()
 	{
@@ -40,6 +40,11 @@ public class Printer
 	public int getprinterID()
 	{
 		return printerID;
+	}
+	public void lowerLevels(Document doc)
+	{
+		tonerLevel = tonerLevel - doc.getpages();
+		paperLeft = paperLeft - doc.getpages();
 	}
 	
 	public void queueJob(PrintJob printJob)

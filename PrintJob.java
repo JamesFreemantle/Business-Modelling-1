@@ -1,8 +1,7 @@
+
 import java.util.Scanner;
 public class PrintJob 
 {
-	private String jobID;
-	private String status;
 	private Document file;
 	private boolean colour;
 	private boolean bothsides;
@@ -10,8 +9,6 @@ public class PrintJob
 	
 	public PrintJob(Document file, boolean colour, boolean bothsides)
 	{
-		this.jobID=jobID;
-		this.status=status;
 		this.file=file;
 		this.colour=colour;
 		this.bothsides=bothsides;

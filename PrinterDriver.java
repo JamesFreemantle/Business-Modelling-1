@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -64,7 +65,6 @@ public class PrinterDriver {
 	public  void createNewUserAccount()
 	{
 	    Scanner scan = new Scanner(System.in);
-			int balance = 0;
 			System.out.println("User ID: ");
 			String ID = scan.nextLine();
 			System.out.println("User name:");
@@ -90,24 +90,6 @@ public class PrinterDriver {
 		 }
 	}
 		
-		private PrintAccount searchAccount(String ID)
-		{
-			if(!printAccounts.isEmpty())
-			{
-				for (PrintAccount anAccount: printAccounts)
-				{
-					if(anAccount.getID().equalsIgnoreCase(ID))
-					{
-						return anAccount;
-					}
-				}
-			}
-			else 
-			{
-				System.out.println("There are no accounts yet");
-			}
-			return null;	
-		}
 		
 		public static void main(String[] args) 
 		{			

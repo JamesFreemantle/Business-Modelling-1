@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,8 +11,6 @@ public class PrintAccount {
 	 private ArrayList<PrintJob> jobList = new ArrayList<PrintJob>();
 	 
 	 Printer printerOne = new Printer(1);
-	 Printer printerTwo = new Printer(2);
-	 Printer printerThree = new Printer(3);
 	 
 	 Scanner scan = new Scanner(System.in);
 	public PrintAccount(String ID, double balance) 
@@ -56,7 +55,7 @@ public class PrintAccount {
 				{
 					if(pjob.getFile().getDocID().equalsIgnoreCase(docResponse))
 					{
-						print(pjob);
+						print(pjob, pjob.getFile());
 					}
 				}
             	dequeueJob();
@@ -108,10 +107,11 @@ public class PrintAccount {
 			System.out.println("The printer needs restocking");
 		}
 	}
-	public void print(PrintJob pjob)
+	public void print(PrintJob pjob, Document doc)
 	{
 			printerOne.dequeueJob(pjob);
 			changeBalance(expense);
+			printerOne.lowerLevels(doc);
 			System.out.println("Printing document: "+pjob.getFile());
 	}
 	

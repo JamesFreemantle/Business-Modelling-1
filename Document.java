@@ -27,7 +27,7 @@ public class Document
 	}
 	public String toString()
 	{	
-		return "docID: " + this.docID + ", filename: " + this.filename + ", Size: " + this.sizeMB
+		return "DocID: " + this.docID + ", Filename: " + this.filename + ", Size: " + this.sizeMB
 				+ ", pages: "+pages;
 	}
 	
